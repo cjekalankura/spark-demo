@@ -1,0 +1,18 @@
+version: '3'
+services:
+  spark:
+    image: "sequenceiq/spark:1.6.0"
+    command: "/bin/bash"
+    tty: true
+    ports:
+      - "8088:8088"
+      - "8042:8042"
+    volumes:
+      - "./build/libs:/libs"
+  builder:
+    image: "gradle:4.2.0-jdk8"
+    command: "/bin/bash"
+    tty: true
+    volumes:
+      - ".:/project"
+    working_dir: "/project"
